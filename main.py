@@ -56,12 +56,20 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={"error": error_messages},
     )
 
+# @app.get("/")
+# async def read_root(request: Request):
+#     """
+#     Serve the index.html template.
+#     """
+#     return templates.TemplateResponse("index.html", {"request": request})
+
 @app.get("/")
 async def read_root(request: Request):
-    """
-    Serve the index.html template.
-    """
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        name="index.html",
+        request=request,
+        context={}
+    )
 
 @app.post("/add", response_model=OperationResponse, responses={400: {"model": ErrorResponse}})
 async def add_route(operation: OperationRequest):
