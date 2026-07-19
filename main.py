@@ -56,13 +56,6 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={"error": error_messages},
     )
 
-# @app.get("/")
-# async def read_root(request: Request):
-#     """
-#     Serve the index.html template.
-#     """
-#     return templates.TemplateResponse("index.html", {"request": request})
-
 @app.get("/")
 async def read_root(request: Request):
     return templates.TemplateResponse(
